@@ -10,6 +10,22 @@ Using Python and various data analytics techniques, the project covers data clea
 
 ---
 
+## Project Impact
+
+This analysis transformed 20,000 raw transaction records into actionable business insights that can support customer retention, marketing optimization, inventory planning, and revenue growth.
+
+The project identified:
+
+- High-value customer segments responsible for the largest share of revenue.
+- Product categories driving customer demand and satisfaction.
+- Opportunities to improve loyalty program effectiveness.
+- Key factors influencing customer spending behaviour.
+- Strategic actions that can support long-term business growth.
+
+By leveraging data analytics techniques, the project demonstrates how transactional data can be converted into meaningful business intelligence for decision-making.
+
+---
+
 # Business Problem
 
 Modern retail businesses generate large volumes of transactional data every day. However, without proper analysis, organizations struggle to extract meaningful insights that can support business growth.
@@ -74,6 +90,20 @@ Each transaction contains information related to customers, products, purchases,
 ### Dataset Source
 
 Electronic Sales Dataset (Kaggle) https://www.kaggle.com/datasets/cameronseamons/electronic-sales-sep2023-sep2024
+
+---
+
+## Key Results at a Glance
+
+| Area | Key Finding |
+|--------|------------|
+| Product Performance | Smartphones were the most purchased and highest-rated products |
+| Customer Demographics | Customer distribution was balanced across genders |
+| Revenue Contribution | Customers aged 31–70 generated the highest sales |
+| Loyalty Program | Non-loyalty members generated higher total sales |
+| Revenue Drivers | Unit Price and Quantity strongly influenced Total Price |
+| Customer Satisfaction | Product ratings remained consistently positive |
+| Outlier Analysis | High-value transactions indicate premium customer segments |
 
 ---
 
