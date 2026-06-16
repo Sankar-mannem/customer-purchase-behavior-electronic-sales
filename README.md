@@ -1,60 +1,94 @@
 # Customer Purchase Behaviour Analysis Using Electronic Sales Data
 
-## Project Overview
+## Executive Summary
 
-This project presents an end-to-end Exploratory Data Analysis (EDA) of customer purchase behaviour using an Electronic Sales dataset containing 20,000 transactions recorded between September 2023 and September 2024.
+Customer behaviour analysis plays a critical role in helping organizations understand purchasing patterns, optimize business strategies, and improve customer satisfaction. This project presents a comprehensive analysis of electronic sales transactions recorded between September 2023 and September 2024.
 
-The objective of the analysis is to understand customer demographics, purchasing patterns, product performance, sales trends, customer satisfaction, and loyalty program participation. The insights generated from this analysis can support data-driven business decisions in areas such as marketing, customer retention, inventory management, and sales optimization.
+The primary objective of this project is to explore customer purchasing behaviour, identify key sales trends, evaluate product performance, understand customer demographics, and generate actionable business insights that can support strategic decision-making.
 
-This project demonstrates practical Data Analytics skills including data cleaning, feature engineering, data visualization, correlation analysis, outlier detection, and business insight generation.
+Using Python and various data analytics techniques, the project covers data cleaning, feature engineering, exploratory data analysis (EDA), visualization, correlation analysis, and outlier detection. The analysis transforms raw transactional data into meaningful business intelligence that can assist stakeholders in improving marketing effectiveness, customer engagement, inventory management, and overall sales performance.
 
 ---
 
 # Business Problem
 
-Retail organizations collect large volumes of transactional data every day. However, raw data alone cannot help businesses understand customer behaviour or improve decision-making.
+Modern retail businesses generate large volumes of transactional data every day. However, without proper analysis, organizations struggle to extract meaningful insights that can support business growth.
 
-This analysis aims to answer the following business questions:
+This project seeks to answer several important business questions:
 
-* Which products generate the highest customer demand?
-* Which customer age groups contribute the most revenue?
-* How do customer demographics influence purchasing behaviour?
-* What role does loyalty membership play in sales performance?
-* Which products receive the highest customer satisfaction ratings?
-* What factors influence customer spending?
+* Which products are most popular among customers?
+* Which customer segments generate the highest revenue?
+* How does customer age influence purchasing behaviour?
+* Are there noticeable differences in purchasing behaviour across genders?
+* How effective is the loyalty membership program?
+* Which products achieve the highest customer satisfaction ratings?
+* What factors influence overall customer spending?
 
-The results of this analysis can help businesses improve customer engagement, marketing strategies, and operational planning.
+By answering these questions, businesses can better understand customer needs and make informed decisions to improve performance.
 
 ---
 
-# Dataset Information
+# Project Objectives
 
-The dataset contains electronic product sales transactions recorded over a one-year period.
+The key objectives of this project are:
+
+* Analyze customer demographics and purchasing behaviour.
+* Identify top-performing product categories.
+* Evaluate customer satisfaction using product ratings.
+* Examine spending behaviour across different age groups.
+* Investigate sales performance trends over time.
+* Analyze loyalty membership participation and its impact on sales.
+* Explore relationships between key numerical variables.
+* Detect unusual purchasing behaviour through outlier analysis.
+* Generate business recommendations based on analytical findings.
+
+---
+
+# Dataset Overview
+
+The dataset contains 20,000 electronic sales transactions recorded between September 2023 and September 2024.
+
+Each transaction contains information related to customers, products, purchases, ratings, payment methods, shipping preferences, and loyalty membership.
 
 ### Dataset Features
 
-| Feature           | Description                       |
-| ----------------- | --------------------------------- |
-| Customer ID       | Unique customer identifier        |
-| Age               | Customer age                      |
-| Gender            | Customer gender                   |
-| Loyalty Member    | Loyalty program membership status |
-| Product Type      | Product category purchased        |
-| Rating            | Customer satisfaction rating      |
-| Order Status      | Completed or cancelled order      |
-| Payment Method    | Payment option selected           |
-| Quantity          | Number of products purchased      |
-| Unit Price        | Price per product                 |
-| Total Price       | Total transaction amount          |
-| Purchase Date     | Date of purchase                  |
-| Shipping Type     | Delivery method                   |
-| Add-ons Purchased | Additional products purchased     |
-| Add-on Total      | Additional purchase amount        |
+| Feature           | Description                   |
+| ----------------- | ----------------------------- |
+| Customer ID       | Unique customer identifier    |
+| Age               | Customer age                  |
+| Gender            | Customer gender               |
+| Loyalty Member    | Membership status             |
+| Product Type      | Product category purchased    |
+| SKU               | Product identifier            |
+| Rating            | Customer rating               |
+| Order Status      | Completed or Cancelled        |
+| Payment Method    | Payment option selected       |
+| Quantity          | Number of products purchased  |
+| Unit Price        | Price per item                |
+| Total Price       | Total transaction value       |
+| Purchase Date     | Date of purchase              |
+| Shipping Type     | Delivery method               |
+| Add-ons Purchased | Additional products purchased |
+| Add-on Total      | Cost of add-ons               |
 
-### Tools and Technologies
+### Dataset Source
+
+Electronic Sales Dataset (Kaggle) https://www.kaggle.com/datasets/cameronseamons/electronic-sales-sep2023-sep2024
+
+---
+
+# Tools and Technologies
+
+### Programming Language
 
 * Python
+
+### Development Environment
+
 * Google Colab
+
+### Libraries Used
+
 * Pandas
 * NumPy
 * Matplotlib
@@ -65,73 +99,83 @@ The dataset contains electronic product sales transactions recorded over a one-y
 
 # Project Workflow
 
-The project was completed using the following analytical workflow:
+The project was completed using the following analytical framework:
 
-1. Data Loading and Inspection
+1. Data Collection and Understanding
 2. Data Cleaning
 3. Feature Engineering
-4. Exploratory Data Analysis
+4. Exploratory Data Analysis (EDA)
 5. Data Visualization
 6. Correlation Analysis
 7. Outlier Detection
 8. Business Insight Generation
-9. Business Recommendations
+9. Recommendation Development
 
 ---
 
 # Data Cleaning
 
-Data cleaning was performed to improve data quality and ensure reliable analysis.
+Data cleaning was performed to improve data quality and ensure reliable analytical outcomes.
 
-### Handling Missing Values
+## Missing Value Analysis
 
-#### Gender Column
+The dataset was inspected for missing values using:
 
-Missing values in the Gender column were replaced using the mode (most frequently occurring value).
+```python
+df.isnull().sum()
+```
+
+Missing values were identified in the following columns:
+
+### Gender
+
+Missing values were replaced using the most frequently occurring category (mode).
 
 ```python
 df['Gender'].fillna(df['Gender'].mode()[0], inplace=True)
 ```
 
-Reason:
+**Reason**
 
-* Gender is a categorical variable.
-* Mode imputation preserves the overall distribution of the data.
+Gender is a categorical variable, and replacing missing values with the mode helps preserve the original distribution of customer demographics.
 
-#### Add-ons Purchased Column
+---
 
-Missing values in the Add-ons Purchased column were replaced with "None".
+### Add-ons Purchased
+
+Missing values were replaced with "None".
 
 ```python
 df['Add-ons Purchased'].fillna('None', inplace=True)
 ```
 
-Reason:
+**Reason**
 
-* Missing values represented customers who did not purchase any additional products.
+Missing values represented customers who did not purchase additional products.
 
-### Data Validation
+---
 
-The following checks were performed:
+## Data Validation
 
-* Dataset structure inspection
-* Missing value analysis
-* Data type verification
-* Statistical summary generation
+Following the cleaning process:
+
+* Missing values were eliminated.
+* Data types were verified.
+* Dataset consistency was confirmed.
 
 Result:
 
-✔ Dataset successfully cleaned with no remaining missing values.
+✔ Clean dataset with no remaining missing values.
 
 ---
 
 # Feature Engineering
 
-To improve analysis quality, several new features were created.
+Additional variables were created to improve analytical depth.
 
-### Age Group Creation
+## Age Group Creation
 
-Customers were grouped into meaningful age categories:
+Customers were categorized into the following age groups:
 
 * 0–10
 * 11–20
@@ -146,199 +190,272 @@ Customers were grouped into meaningful age categories:
 
 Purpose:
 
-* Compare spending patterns across age groups.
-* Identify high-value customer segments.
+* Customer segmentation
+* Spending behaviour analysis
+* High-value customer identification
 
-### Purchase Date Transformation
+---
 
-The Purchase Date column was converted into datetime format.
+## Date Transformation
+
+Purchase Date was converted into datetime format.
 
 ```python
 df['Purchase Date'] = pd.to_datetime(df['Purchase Date'])
 ```
 
-### Time-Based Features
+---
+
+## Time-Based Features
 
 Two additional variables were created:
 
-* Year-Month
-* Weekday
+### Year-Month
 
-Purpose:
+Used to analyze monthly sales trends.
 
-* Analyze monthly sales trends.
-* Study customer purchasing behaviour over time.
+### Weekday
+
+Used to analyze purchasing behaviour across different days of the week.
 
 ---
 
-# Exploratory Data Analysis and Visualizations
+# Exploratory Data Analysis and Visual Insights
 
 ## 1. Gender Distribution
 
-![Gender Distribution](visualizations/02_gender_distribution.png)
+![Gender Distribution](visualizations/gender_distribution.png)
 
-### Insight
+### Objective
 
-The customer base is nearly equally distributed between male and female customers, indicating that electronic products appeal broadly across genders.
+To understand the demographic composition of the customer base.
 
-### Business Value
+### Analysis
 
-Supports the development of inclusive marketing strategies that target both customer groups effectively.
+The visualization indicates that the customer base is almost equally distributed between male and female customers.
+
+### Business Insight
+
+The balanced distribution suggests that electronic products appeal broadly across genders.
+
+### Recommendation
+
+Marketing campaigns should maintain inclusive targeting strategies rather than focusing heavily on a single gender segment.
 
 ---
 
 ## 2. Monthly Sales Trend
 
-![Monthly Sales Trend](visualizations/06_monthly_sales_trend.png)
+![Monthly Sales Trend](visualizations/monthly_sales_trend.png)
 
-### Insight
+### Objective
 
-Sales showed significant variation throughout the year, with noticeable peaks during high-demand periods.
+To analyze sales performance over time.
 
-### Business Value
+### Analysis
 
-Helps businesses forecast demand, optimize inventory levels, and prepare for seasonal sales fluctuations.
+Sales fluctuated throughout the year, with several months exhibiting significantly higher revenue than others.
+
+### Business Insight
+
+These fluctuations suggest seasonal demand patterns and periods of increased purchasing activity.
+
+### Recommendation
+
+Businesses should leverage historical sales patterns to improve inventory management and demand forecasting.
 
 ---
 
 ## 3. Product Purchases by Gender
 
-![Product Purchases by Gender](visualizations/09_product_purchases_by_gender.png)
+![Product Purchases by Gender](visualizations/product_purchases_by_gender.png)
 
-### Insight
+### Objective
 
-Smartphones emerged as the most purchased product category for both male and female customers.
+To compare product preferences across genders.
 
-### Business Value
+### Analysis
 
-Provides valuable information for product promotion and targeted marketing campaigns.
+Smartphones emerged as the most purchased product category among both male and female customers.
+
+### Business Insight
+
+Customer demand for smartphones remains consistently high across demographic groups.
+
+### Recommendation
+
+Organizations should prioritize smartphone-related promotions and maintain sufficient inventory levels.
 
 ---
 
 ## 4. Spending Behaviour by Age Group
 
-![Spending Behaviour by Age Group](visualizations/08_total_spending_by_age_group.png)
+![Spending Behaviour by Age Group](visualizations/total_spending_by_age_group.png)
 
-### Insight
+### Objective
 
-Customers between 31 and 70 years old contributed the highest overall revenue.
+To identify high-value customer segments.
 
-### Business Value
+### Analysis
 
-Identifies high-value customer segments that should be prioritized in customer acquisition and retention strategies.
+Customers aged between 31 and 70 generated the highest overall revenue.
+
+### Business Insight
+
+Middle-aged customers represent the most valuable customer segment in terms of purchasing power.
+
+### Recommendation
+
+Targeted marketing campaigns and loyalty programs should focus on these age groups.
 
 ---
 
 ## 5. Sales by Gender and Loyalty Membership
 
-![Sales by Gender and Loyalty Membership](visualizations/12_sales_by_gender_loyalty_membership.png)
+![Sales by Gender and Loyalty Membership](visualizations/sales_by_gender_loyalty_membership.png)
 
-### Insight
+### Objective
 
-Non-loyalty members generated higher total sales than loyalty members.
+To evaluate the impact of loyalty membership on sales.
 
-### Business Value
+### Analysis
 
-Highlights an opportunity to redesign loyalty programs and improve customer engagement.
+Non-loyalty members generated significantly higher total sales than loyalty members.
+
+### Business Insight
+
+Current loyalty program participation may not be sufficiently attractive to customers.
+
+### Recommendation
+
+Review membership benefits and introduce personalized incentives to increase engagement.
 
 ---
 
 ## 6. Average Product Rating Analysis
 
-![Average Rating by Product](visualizations/11_average_rating_by_product.png)
+![Average Rating by Product](visualizations/average_rating_by_product.png)
 
-### Insight
+### Objective
 
-Smartphones received the highest average customer rating, indicating strong customer satisfaction.
+To evaluate customer satisfaction across product categories.
 
-### Business Value
+### Analysis
 
-High-rated products can be leveraged in marketing campaigns to build customer trust and increase sales.
+Smartphones achieved the highest average customer rating.
+
+### Business Insight
+
+Customers appear highly satisfied with smartphone purchases.
+
+### Recommendation
+
+Promote highly rated products using customer testimonials and review-based marketing strategies.
 
 ---
 
 ## 7. Correlation Heatmap
 
-![Correlation Heatmap](visualizations/13_correlation_heatmap.png)
+![Correlation Heatmap](visualizations/correlation_heatmap.png)
 
-### Insight
+### Objective
+
+To identify relationships between numerical variables.
+
+### Analysis
 
 Strong positive relationships were observed between:
 
 * Unit Price and Total Price
 * Quantity and Total Price
 
-### Business Value
+A moderate negative relationship was observed between Rating and Unit Price.
 
-Demonstrates that pricing and purchase quantity are key drivers of sales revenue.
+### Business Insight
 
----
+Revenue is primarily influenced by pricing and purchase volume.
 
-## 8. Outlier Analysis
+### Recommendation
 
-![Outlier Detection](visualizations/15_outlier_detection_boxplot.png)
-
-### Insight
-
-Outliers were identified in transaction values and add-on purchases.
-
-### Business Value
-
-Helps identify unusual purchasing behaviour, premium customers, and potential anomalies within the dataset.
+Pricing strategies and product bundling initiatives can be optimized to maximize revenue generation.
 
 ---
 
-# Key Business Insights
+## 8. Outlier Detection Analysis
+
+![Outlier Detection](visualizations/outlier_detection_boxplot.png)
+
+### Objective
+
+To identify unusual purchasing behaviour and extreme transaction values.
+
+### Analysis
+
+Outliers were detected in Total Price and Add-on Total variables.
+
+### Business Insight
+
+These observations may represent premium purchases, high-value customers, or exceptional transactions.
+
+### Recommendation
+
+Further investigation of high-value transactions may help identify profitable customer segments.
+
+---
+
+# Key Findings
 
 The analysis produced several important findings:
 
 * Smartphones are the most purchased product category.
-* Smartphones also received the highest average customer ratings.
+* Smartphones received the highest average customer ratings.
 * Customer purchasing behaviour is balanced across genders.
 * Customers aged 31–70 contribute the largest share of revenue.
-* Loyalty program participation remains relatively low.
-* Unit price and quantity purchased strongly influence total spending.
-* Customer satisfaction remains generally positive across product categories.
+* Loyalty membership participation appears relatively low.
+* Pricing and quantity purchased strongly influence total spending.
+* Customer satisfaction remains positive across most product categories.
+* Significant sales fluctuations occur throughout the year.
 
 ---
 
 # Business Recommendations
 
-Based on the analysis, the following recommendations are proposed:
+Based on the findings, the following recommendations are proposed:
 
-### 1. Strengthen Loyalty Programs
+### Strengthen Loyalty Programs
 
-Increase loyalty program adoption through personalized rewards and targeted promotions.
+Develop personalized rewards and incentives to improve membership participation.
 
-### 2. Focus on High-Value Age Segments
+### Focus on High-Value Customer Segments
 
-Develop marketing campaigns aimed at customers aged 31–70, who generate the highest revenue.
+Target customers aged 31–70 through specialized marketing campaigns.
 
-### 3. Expand Smartphone Promotions
+### Expand Smartphone Promotions
 
-Leverage smartphone popularity and customer satisfaction to drive additional sales.
+Leverage smartphone popularity and customer satisfaction to drive additional revenue.
 
-### 4. Improve Demand Forecasting
+### Improve Demand Forecasting
 
-Use historical sales trends to improve inventory planning and reduce stock shortages.
+Utilize historical sales trends to improve inventory planning.
 
-### 5. Develop Customer Segmentation Strategies
+### Implement Customer Segmentation
 
-Segment customers based on purchasing behaviour to deliver more personalized experiences.
+Segment customers according to purchasing behaviour to support personalized marketing initiatives.
 
 ---
 
 # Skills Demonstrated
 
-This project demonstrates the following technical and analytical skills:
+This project demonstrates proficiency in:
 
 ### Data Analytics
 
 * Data Cleaning
 * Feature Engineering
-* Exploratory Data Analysis (EDA)
+* Exploratory Data Analysis
 * Statistical Analysis
-* Business Intelligence
+* Correlation Analysis
+* Outlier Detection
 
 ### Data Visualization
 
@@ -358,25 +475,24 @@ This project demonstrates the following technical and analytical skills:
 
 * Customer Behaviour Analysis
 * Sales Trend Analysis
-* Customer Segmentation Insights
-* Business Recommendation Development
+* Customer Segmentation
+* Business Intelligence
+* Strategic Recommendation Development
 
 ---
 
 # Repository Structure
 
+```text
 customer-purchase-behaviour-electronic-sales/
 
+├── data/
 ├── notebooks/
-
 ├── reports/
-
 ├── visualizations/
-
 ├── README.md
-
 ├── requirements.txt
-
 └── LICENSE
+```
 
 ---
